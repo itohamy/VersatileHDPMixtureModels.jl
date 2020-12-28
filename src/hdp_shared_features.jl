@@ -307,7 +307,6 @@ function k_mean_likelihood(likehood_rating,k)
 end
 
 function hdp_fit(data, α,γ,prior,iters, initial_custers = 1,burnout = 5;multiprocess=false)
-    println("\npppppppppppppppppp")
     dim = size(data[1],1)
     gdim = dim
     gprior,lprior = create_default_priors(gdim,dim-gdim,:niw)
@@ -345,11 +344,12 @@ function vhdp_fit(data,gdim, α,γ,η,gprior::distribution_hyper_params,lprior,i
 
     println("\nStart running vHDP...")
     init_first_clusters!(model)
+    iters_m = floor(Int8,iters/10.0)
     for i=1:iters
         tic = time()
         model_iteration(model,false,false,burnout)
         toc = time() -tic
-        if mod(i, 200)==0
+        if mod(i, iters_m)==0
             println("Iteration: " * string(i) * "|| Global Counts: " * string([x.clusters_count for x in global_clusters_vector]) * "|| iter time: " * string(toc))
         end
         total_time+= toc
