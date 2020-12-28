@@ -344,7 +344,7 @@ function vhdp_fit(data,gdim, α,γ,η,gprior::distribution_hyper_params,lprior,i
 
     println("\nStart running vHDP...")
     init_first_clusters!(model)
-    iters_m = floor(Int8,iters/10.0)
+    iters_m = floor(Int64,iters/10.0)
     for i=1:iters
         tic = time()
         model_iteration(model,false,false,burnout)
