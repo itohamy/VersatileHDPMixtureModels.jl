@@ -307,6 +307,7 @@ function k_mean_likelihood(likehood_rating,k)
 end
 
 function hdp_fit(data, α,γ,prior,iters, initial_custers = 1,burnout = 5;multiprocess=false)
+    println("\npppppppppppppppppp")
     dim = size(data[1],1)
     gdim = dim
     gprior,lprior = create_default_priors(gdim,dim-gdim,:niw)
